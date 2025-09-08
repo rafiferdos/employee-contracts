@@ -3,8 +3,10 @@
 import AnimatedBg from "@/components/animated-bg";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { DatePicker } from "@heroui/date-picker";
 import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
+import { parseDate } from "@internationalized/date";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import { useRef, useState } from "react";
@@ -21,10 +23,10 @@ export default function VertragErstellenPage() {
       worktyp: workTypes[0].value, // Work type
       vorname: "", // First name
       nachname: "", // Surname
-      geburtsdatum: "", // Date of birth
+      geburtsdatum: null as Date | null, // Date of birth
       adresse: "", // Address
       staatsangehoerigkeit: "", // Nationality
-      startdate: "", // Start date
+      startdate: null as Date | null, // Start date
       stundenlohn: "14,53", // Hourly wage
       brutto: "", // Monthly gross salary
       ortdatum: "München 29.08.2025", // Place, date
@@ -106,14 +108,24 @@ export default function VertragErstellenPage() {
                      />
                   </div>
 
-                  <Input
-                     type='date'
+                  <DatePicker
                      label='Geburtsdatum' /* Date of birth */
-                     name='geburtsdatum'
-                     value={form.geburtsdatum}
-                     onValueChange={(v) =>
-                        setForm((f) => ({ ...f, geburtsdatum: v }))
+                     value={
+                        form.geburtsdatum ?
+                           parseDate(
+                              form.geburtsdatum.toISOString().split("T")[0]
+                           )
+                        :  null
                      }
+                     onChange={(date) => {
+                        setForm((f) => ({
+                           ...f,
+                           geburtsdatum:
+                              date ?
+                                 new Date(date.year, date.month - 1, date.day)
+                              :  null,
+                        }));
+                     }}
                   />
 
                   <Input
@@ -134,14 +146,22 @@ export default function VertragErstellenPage() {
                      }
                   />
 
-                  <Input
-                     type='date'
+                  <DatePicker
                      label='Startdatum' /* Start date */
-                     name='startdate'
-                     value={form.startdate}
-                     onValueChange={(v) =>
-                        setForm((f) => ({ ...f, startdate: v }))
+                     value={
+                        form.startdate ?
+                           parseDate(form.startdate.toISOString().split("T")[0])
+                        :  null
                      }
+                     onChange={(date) => {
+                        setForm((f) => ({
+                           ...f,
+                           startdate:
+                              date ?
+                                 new Date(date.year, date.month - 1, date.day)
+                              :  null,
+                        }));
+                     }}
                   />
 
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -213,7 +233,9 @@ export default function VertragErstellenPage() {
                      </div>
                      <div>
                         <span className='font-medium'>Geburtsdatum:</span>{" "}
-                        {form.geburtsdatum}
+                        {form.geburtsdatum ?
+                           form.geburtsdatum.toLocaleDateString("de-DE")
+                        :  ""}
                      </div>
                      <div>
                         <span className='font-medium'>Adresse:</span>{" "}
@@ -227,7 +249,9 @@ export default function VertragErstellenPage() {
                      </div>
                      <div>
                         <span className='font-medium'>Startdatum:</span>{" "}
-                        {form.startdate}
+                        {form.startdate ?
+                           form.startdate.toLocaleDateString("de-DE")
+                        :  ""}
                      </div>
                      <div>
                         <span className='font-medium'>Stundenlohn:</span>{" "}
