@@ -14,9 +14,9 @@
 }
 
 .animate-float {
-   animation: float 10s ease-in-out infinite;
+   animation: float 5s ease-in-out infinite;
 }
 
 .animate-float-slow {
-   animation: float 16s ease-in-out infinite;
+   animation: float 9s ease-in-out infinite;
 }

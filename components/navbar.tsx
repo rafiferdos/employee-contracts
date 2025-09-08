@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ThemeSwitch } from "./theme-switch";
 
 export default function Navbar() {
@@ -11,19 +12,19 @@ export default function Navbar() {
             </div>
             <div className='flex-1 flex justify-center'>
                <div className='flex items-center gap-3'>
-                  <a
-                     href='#'
+                  <Link
+                     href='/'
                      className='heroui-btn heroui-btn-primary heroui-btn-md animate-fade-in-up focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200'
                   >
                      Startseite {/* Home */}
-                  </a>
+                  </Link>
                   <span className='h-6 w-px bg-muted-foreground/30 mx-2' />
-                  <a
-                     href='#'
+                  <Link
+                     href='/vertrag-erstellen'
                      className='heroui-btn heroui-btn-secondary heroui-btn-md animate-fade-in-up focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all duration-200'
                   >
                      Vertrag erstellen {/* Create Contract */}
-                  </a>
+                  </Link>
                </div>
             </div>
             <span className='h-6 w-px bg-muted-foreground/30 mx-2' />
