@@ -56,7 +56,7 @@ export default function Home() {
    };
 
    return (
-      <div className='relative min-h-[calc(100vh-80px)] py-10'>
+      <div className='relative z-10 min-h-[calc(100vh-80px)] py-10'>
          <AnimatedBg />
          <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 px-6'>
             {/* Left: Form (glassy card) */}
