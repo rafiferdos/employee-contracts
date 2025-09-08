@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
 
-import { Providers } from "./providers";
 
+import { Providers } from "./providers";
+import Navbar from "@/components/navbar";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 
@@ -44,9 +45,7 @@ export default function RootLayout({
             >
                <div className='relative flex flex-col h-screen'>
                   {/* Navbar */}
-                  <div className='fixed top-0 left-0 w-full z-50'>
-                     {require("@/components/navbar").default()}
-                  </div>
+                  <Navbar />
                   <main className='container mx-auto max-w-7xl pt-20 px-6 flex-grow'>
                      {children}
                   </main>
