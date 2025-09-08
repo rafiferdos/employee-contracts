@@ -37,6 +37,7 @@ export default function VertragErstellenPage() {
       const dataUrl = await toPng(previewRef.current, {
          cacheBust: true,
          pixelRatio: 2,
+         skipFonts: true,
       });
       const pdf = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
       const imgProps = (pdf as any).getImageProperties(dataUrl);
