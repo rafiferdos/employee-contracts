@@ -1,40 +1,80 @@
-import Link from "next/link";
+"use client";
+
+import { Link } from "@heroui/link";
+import {
+   Navbar as HNavbar,
+   NavbarBrand,
+   NavbarContent,
+   NavbarItem,
+   NavbarMenu,
+   NavbarMenuItem,
+   NavbarMenuToggle,
+} from "@heroui/navbar";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { ThemeSwitch } from "./theme-switch";
 
 export default function Navbar() {
+   const pathname = usePathname();
+
    return (
-      <nav className='w-full bg-background shadow-sm backdrop-blur-lg transition-all duration-300'>
-         <div className='max-w-7xl mx-auto flex items-center justify-between px-6 py-4'>
-            <div className='flex items-center gap-2'>
-               <span className='text-xl font-bold text-foreground animate-fade-in'>
-                  Mitarbeiterverträge {/* Employee Contracts */}
-               </span>
-            </div>
-            <div className='flex-1 flex justify-center'>
-               <div className='flex items-center gap-3'>
-                  <Link
-                     href='/'
-                     className='heroui-btn heroui-btn-primary heroui-btn-md animate-fade-in-up focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200'
-                  >
-                     Startseite {/* Home */}
-                  </Link>
-                  <span className='h-6 w-px bg-muted-foreground/30 mx-2' />
-                  <Link
-                     href='/vertrag-erstellen'
-                     className='heroui-btn heroui-btn-secondary heroui-btn-md animate-fade-in-up focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all duration-200'
-                  >
-                     Vertrag erstellen {/* Create Contract */}
-                  </Link>
-               </div>
-            </div>
-            <span className='h-6 w-px bg-muted-foreground/30 mx-2' />
-            <button
-               className='heroui-btn heroui-btn-ghost heroui-btn-md animate-fade-in-up transition-all duration-200'
-               aria-label='Modus wechseln' // Toggle mode
-            >
+      <HNavbar
+         isBordered
+         isBlurred
+         maxWidth='xl'
+         className='bg-background/60 backdrop-saturate-150'
+      >
+         <NavbarBrand>
+            <span className='text-xl font-bold'>Mitarbeiterverträge</span>
+         </NavbarBrand>
+
+         <NavbarContent className='hidden sm:flex gap-6' justify='center'>
+            <NavbarItem isActive={pathname === "/"}>
+               <Link
+                  as={NextLink}
+                  href='/'
+                  color={pathname === "/" ? "primary" : "foreground"}
+               >
+                  Startseite
+               </Link>
+            </NavbarItem>
+            <NavbarItem isActive={pathname?.startsWith("/vertrag-erstellen")}>
+               <Link
+                  as={NextLink}
+                  href='/vertrag-erstellen'
+                  color={
+                     pathname?.startsWith("/vertrag-erstellen") ?
+                        "secondary"
+                     :  "foreground"
+                  }
+               >
+                  Vertrag erstellen
+               </Link>
+            </NavbarItem>
+         </NavbarContent>
+
+         <NavbarContent justify='end'>
+            <NavbarItem>
                <ThemeSwitch />
-            </button>
-         </div>
-      </nav>
+            </NavbarItem>
+            <NavbarMenuToggle
+               className='sm:hidden'
+               aria-label='Menü umschalten'
+            />
+         </NavbarContent>
+
+         <NavbarMenu>
+            <NavbarMenuItem>
+               <Link as={NextLink} href='/' size='lg'>
+                  Startseite
+               </Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem>
+               <Link as={NextLink} href='/vertrag-erstellen' size='lg'>
+                  Vertrag erstellen
+               </Link>
+            </NavbarMenuItem>
+         </NavbarMenu>
+      </HNavbar>
    );
 }
