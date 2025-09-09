@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
 
-import ClientLayout from "@/components/client-layout";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 
@@ -29,6 +28,8 @@ export default function RootLayout({
 }: {
    children: React.ReactNode;
 }) {
+   // Dynamically require ClientLayout so this file stays a server component
+   const ClientLayout = require("@/components/client-layout").default;
    return (
       <html suppressHydrationWarning lang='en'>
          <head />
