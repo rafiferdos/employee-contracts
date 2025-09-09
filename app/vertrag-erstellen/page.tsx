@@ -219,7 +219,8 @@ export default function VertragErstellenPage() {
                <CardBody>
                   <div
                      ref={previewRef}
-                     className='bg-white dark:bg-black/90 rounded-xl p-6 space-y-2 shadow-lg'
+                     className='bg-white text-black rounded-xl p-6 space-y-2 shadow-lg'
+                     style={{ colorScheme: "light" }}
                   >
                      <div className='text-lg font-semibold'>
                         Mitarbeitervertrag

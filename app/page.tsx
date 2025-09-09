@@ -1,31 +1,30 @@
 "use client";
 
 import AnimatedBg from "@/components/animated-bg";
-import { Button } from "@heroui/button";
-import { Card, CardBody, CardHeader } from "@heroui/card";
 import { GlassyCard } from "@/components/glassy-card";
-import Link from "next/link";
 import { useNavigation } from "@/components/navigation-context";
+import { Button } from "@heroui/button";
+import Link from "next/link";
 
 function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
-    return (
-       <svg
-          viewBox='0 0 24 24'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-          aria-hidden='true'
-          {...props}
-       >
-          <path
-             d='M4.5 12.75l6 6 9-13.5'
-             stroke='currentColor'
-             strokeWidth='2'
-             strokeLinecap='round'
-             strokeLinejoin='round'
-          />
-       </svg>
-    );
- }
+   return (
+      <svg
+         viewBox='0 0 24 24'
+         fill='none'
+         xmlns='http://www.w3.org/2000/svg'
+         aria-hidden='true'
+         {...props}
+      >
+         <path
+            d='M4.5 12.75l6 6 9-13.5'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+         />
+      </svg>
+   );
+}
 
 function HomePage() {
    return (
@@ -114,12 +113,8 @@ function HomePage() {
                },
             ].map((item) => (
                <GlassyCard key={item.title}>
-                  <div className='font-semibold mb-2'>
-                     {item.title}
-                  </div>
-                  <div className='text-muted-foreground'>
-                     {item.text}
-                  </div>
+                  <div className='font-semibold mb-2'>{item.title}</div>
+                  <div className='text-muted-foreground'>{item.text}</div>
                </GlassyCard>
             ))}
          </section>
@@ -161,10 +156,12 @@ function AboutPage() {
                <div className='text-center'>
                   <h1 className='text-4xl font-bold mb-6'>About Us</h1>
                   <p className='text-lg text-muted-foreground mb-4'>
-                     Learn more about Mitarbeiterverträge and our mission to simplify contract creation.
+                     Learn more about Mitarbeiterverträge and our mission to
+                     simplify contract creation.
                   </p>
                   <p className='text-muted-foreground'>
-                     We provide easy-to-use tools for creating professional employment contracts in German and Turkish.
+                     We provide easy-to-use tools for creating professional
+                     employment contracts in German and Turkish.
                   </p>
                </div>
             </GlassyCard>
@@ -182,7 +179,8 @@ function ServicesPage() {
                <div className='text-center'>
                   <h1 className='text-4xl font-bold mb-6'>Our Services</h1>
                   <p className='text-lg text-muted-foreground mb-4'>
-                     Discover the features that make contract creation effortless.
+                     Discover the features that make contract creation
+                     effortless.
                   </p>
                   <ul className='text-left max-w-md mx-auto space-y-2'>
                      <li>• Multilingual support (DE/TR)</li>
