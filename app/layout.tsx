@@ -1,11 +1,16 @@
+"use client";
+
 import "@/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 import Navbar from "@/components/navbar";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 import { Providers } from "./providers";
+import { NavigationProvider } from "@/components/navigation-context";
 
 export const metadata: Metadata = {
    title: {
@@ -26,31 +31,44 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({
-   children,
+    children,
 }: {
-   children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-   return (
-      <html suppressHydrationWarning lang='en'>
-         <head />
-         <body
-            className={clsx(
-               "min-h-screen text-foreground bg-background font-sans antialiased",
-               fontSans.variable
-            )}
-         >
-            <Providers
-               themeProps={{ attribute: "class", defaultTheme: "dark" }}
-            >
-               <div className='relative flex flex-col h-screen'>
-                  {/* Navbar */}
-                  <Navbar />
-                  <main className='container mx-auto max-w-7xl pt-20 px-6 flex-grow'>
-                     {children}
-                  </main>
-               </div>
-            </Providers>
-         </body>
-      </html>
-   );
+    const pathname = usePathname();
+
+    return (
+       <html suppressHydrationWarning lang='en'>
+          <head />
+          <body
+             className={clsx(
+                "min-h-screen text-foreground bg-background font-sans antialiased bg-glass-gradient",
+                fontSans.variable
+             )}
+          >
+             <Providers
+                themeProps={{ attribute: "class", defaultTheme: "dark" }}
+             >
+                <NavigationProvider>
+                   <div className='relative flex flex-col h-screen'>
+                      {/* Navbar */}
+                      <Navbar />
+                      <AnimatePresence mode="wait">
+                         <motion.main
+                            key={pathname}
+                            className='container mx-auto max-w-7xl pt-20 px-4 md:px-6 lg:px-8 flex-grow'
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                         >
+                            {children}
+                         </motion.main>
+                      </AnimatePresence>
+                   </div>
+                </NavigationProvider>
+             </Providers>
+          </body>
+       </html>
+    );
 }

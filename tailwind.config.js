@@ -8,6 +8,55 @@ module.exports = {
       "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
    ],
    darkMode: "class",
+   theme: {
+      extend: {
+         screens: {
+            'xs': '320px',
+            'xl': '1440px',
+         },
+         fontSize: {
+            'xs': ['clamp(0.75rem, 2vw, 0.875rem)', { lineHeight: '1rem' }],
+            'sm': ['clamp(0.875rem, 2.5vw, 1rem)', { lineHeight: '1.25rem' }],
+            'base': ['clamp(1rem, 3vw, 1.125rem)', { lineHeight: '1.5rem' }],
+            'lg': ['clamp(1.125rem, 3.5vw, 1.25rem)', { lineHeight: '1.75rem' }],
+            'xl': ['clamp(1.25rem, 4vw, 1.5rem)', { lineHeight: '1.75rem' }],
+            '2xl': ['clamp(1.5rem, 5vw, 2rem)', { lineHeight: '2rem' }],
+            '3xl': ['clamp(1.875rem, 6vw, 2.25rem)', { lineHeight: '2.25rem' }],
+            '4xl': ['clamp(2.25rem, 7vw, 3rem)', { lineHeight: '1' }],
+            '5xl': ['clamp(3rem, 8vw, 4rem)', { lineHeight: '1' }],
+         },
+         colors: {
+            glass: {
+               white: "rgba(255, 255, 255, 0.1)",
+               blue: "rgba(227, 242, 253, 0.2)",
+               silver: "#F8F9FA",
+               deepBlue: "#1976D2",
+            },
+         },
+         backgroundImage: {
+            "glass-gradient": "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(248,249,250,0.05) 100%)",
+         },
+         boxShadow: {
+            "glass-subtle": "0 4px 6px rgba(0,0,0,0.05)",
+            "glass": "0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2)",
+            "glass-hover": "0 12px 40px rgba(0,0,0,0.15)",
+         },
+         backdropBlur: {
+            "glass": "20px",
+            "glass-subtle": "10px",
+         },
+         backdropSaturate: {
+            "glass": "180%",
+         },
+         fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+         },
+         spacing: {
+            18: "4.5rem",
+            88: "22rem",
+         },
+      },
+   },
    plugins: [
       heroui({
          themes: {
