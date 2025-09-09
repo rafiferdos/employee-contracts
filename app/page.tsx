@@ -47,11 +47,17 @@ function HomePage() {
                      href='/vertrag-erstellen'
                      color='primary'
                      size='lg'
-                     className='glass-button'
+                     className='text-primary-foreground'
                   >
                      Vertrag jetzt erstellen
                   </Button>
-                  <Button as={Link} href='#funktionen' variant='flat' size='lg' className='glass-button'>
+                  <Button
+                     as={Link}
+                     href='#funktionen'
+                     variant='flat'
+                     size='lg'
+                     className='text-foreground'
+                  >
                      Funktionen ansehen
                   </Button>
                </div>
@@ -135,7 +141,7 @@ function HomePage() {
                      href='/vertrag-erstellen'
                      color='primary'
                      size='lg'
-                     className='glass-button'
+                     className='text-primary-foreground'
                   >
                      Vertrag erstellen
                   </Button>
